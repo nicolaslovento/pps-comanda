@@ -34,7 +34,7 @@ export class AppComponent {
       setTimeout(() => {
         // console.log('Desactivo la Splash Screen animada');
         this.showSplash = false;
-      }, 8000);
+      }, 7000);
     });
   }
 }

@@ -1,14 +1,36 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="content" align="center">
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+
+  <div  class="login" padding>
+
+    <ion-item class="input">
+      <ion-label  position="floating" color-text="black">Correo</ion-label>
+      <ion-input  clear-input="true" type="text" name="correo" [(ngModel)]="correo"></ion-input>
+    </ion-item>
+
+    <ion-item class="input">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input clear-input="true" type="password" name="password" [(ngModel)]="clave" ></ion-input>
+    </ion-item>
+
+    <div class="buttonIngresar">
+      <ion-button shape="round" fill="outline" expand="block" (click)="login()" color="primary">Ingresar</ion-button>
+    </div>
+
   </div>
-</ion-content>
+
+  
+  <div align="center" class="btn-usuarios">
+      <ion-button (click)="cargarUsuario(1)" color="success">Dueño</ion-button>
+      <ion-button (click)="cargarUsuario(2)" color="primary">Supervisor</ion-button>
+      <ion-button (click)="cargarUsuario(3)" color="secondary">Cocinero</ion-button>
+      <ion-button (click)="cargarUsuario(4)" color="warning">Mozo</ion-button>
+      <ion-button (click)="cargarUsuario(5)" color="danger">Bartender</ion-button>
+      <ion-button (click)="cargarUsuario(6)" color="medium">Cliente Registrado</ion-button>
+      <ion-button (click)="cargarUsuario(7)" color="dark">Cliente Anonimo</ion-button>
+  </div>
+
+
+    
+</div>
+

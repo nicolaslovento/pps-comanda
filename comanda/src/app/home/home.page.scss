@@ -1,1 +1,43 @@
 
+.content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/imagenes/fondo-login.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  
+  .login{
+      position: absolute;
+      width: 250px;
+      height: 280px;
+      background-color: rgba($color: slategrey, $alpha: 0.5);
+      top:15%;
+      margin-left: 15%;
+      margin-right: 20%;
+  }
+  
+  
+  ion-item.input{
+      --background:transparent;
+      width:227px;
+      margin-top:10%;
+      color:white;
+  }
+
+  .buttonIngresar ion-button{
+    position: absolute;
+    margin-top: 13%;
+    margin-left: 14px;
+    width: 200px;
+  }
+
+  .btn-usuarios{
+      position: absolute;
+      top:70%;
+      float:right;
+  }
+  
