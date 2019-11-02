@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { timer } from 'rxjs';
-import { reject } from 'q';
-import { resolve } from 'path';
+
 
 @Injectable({
   providedIn: 'root'
