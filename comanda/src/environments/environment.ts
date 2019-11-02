@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyCrIVYtWMfWJ_4QmwochrvVX9Aq11swuZU",
+    authDomain: "pps-comanda.firebaseapp.com",
+    databaseURL: "https://pps-comanda.firebaseio.com",
+    projectId: "pps-comanda",
+    storageBucket: "pps-comanda.appspot.com",
+    messagingSenderId: "279473463120",
+    appId: "1:279473463120:web:ccc8149b268e15e48f5655"
+  }
 };
 
 /*
