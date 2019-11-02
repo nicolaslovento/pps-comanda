@@ -10,7 +10,7 @@
   }
 
   
-  .login{
+.login{
       position: absolute;
       width: 250px;
       height: 280px;
@@ -24,6 +24,7 @@
   ion-item.input{
       --background:transparent;
       width:227px;
+      font-size: 13px;
       margin-top:10%;
       color:white;
   }

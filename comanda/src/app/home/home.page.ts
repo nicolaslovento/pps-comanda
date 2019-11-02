@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+
+import { CloudFirestoreService } from '../servicios/cloud-firestore.service';
+import { AlertControllerService } from '../servicios/alert-controller.service';
 
 @Component({
   selector: 'app-home',
@@ -15,78 +17,60 @@ export class HomePage {
 
   ngOnInit() {
     
-    localStorage.clear();
     
-    //this.traerMisFotos();
-  }
-  constructor(private router:Router,public alertController: AlertController) {}
-
-  async presentAlert(error:string,accion:boolean) {
-    var alert;
-    if(accion){
-      alert = await this.alertController.create({
-
-      
-        mode:"md",
-        message: '<b align=center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bienvenido</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-spinner name="bubbles"></ion-spinner>'
-        
-        
-      });
-    }else{
-      alert = await this.alertController.create({
-
-      
-        mode:"md",
-        message: '<b align=center>'+error+'</b>',
-        buttons: ['Cerrar']
-        
-      });
-    }  
-    
-    
-    await alert.present();
   }
 
+  constructor(
+
+    private dbFirestore:CloudFirestoreService,
+    private alertService:AlertControllerService,
+    private router:Router
+
+  ) 
+  {}
+
+  
+/*Verifica que los datos ingresados estén correctos*/
   verificarError(){
 
     if(this.correo=="" && this.clave==""){
       this.error="El correo y la clave no pueden estar vacíos.";
-      this.presentAlert(this.error,false);
-      
-      
+      this.alertService.alertError(this.error);
       
       return true;
     }
     if(this.correo==""){
       this.error="El correo no puede estar vacío.";
-      this.presentAlert(this.error,false);
+      this.alertService.alertError(this.error);
      
       return true;
     }
     if(this.correo.indexOf('@')<0){
       this.error="El correo debe tener un formato válido.";
-      this.presentAlert(this.error,false);
+      this.alertService.alertError(this.error);
      
       return true;
     }
     if(this.clave==""){
       this.error="La clave no puede estar vacía.";
-      this.presentAlert(this.error,false);
+      this.alertService.alertError(this.error);
       
       
       return true;
     }
     if(this.clave.length<4){
       this.error="La clave debe tener al menos 4 caracteres.";
-      this.presentAlert(this.error,false);
+      this.alertService.alertError(this.error);
       
      
       return true;
     }
   }
 
-    cargarUsuario(eleccion:number){
-      switch(eleccion){
+
+/*carga de usuarios a través de botones*/
+  cargarUsuario(eleccion:number){
+    switch(eleccion){
         case 1:
           this.correo="supervisor@supervisor.com";
           this.clave="1111";
@@ -96,12 +80,12 @@ export class HomePage {
           this.clave="2222";
         break;
         case 3:
-          this.correo="mozo@empleado.com";
-        this.clave="3333";
+          this.correo="cocinero@empleado.com";
+          this.clave="3333";
             
         break;
         case 4:
-            this.correo="cocinero@empleado.com";
+            this.correo="mozo@empleado.com";
             this.clave="4444";
         break;
         case 5:
@@ -117,35 +101,28 @@ export class HomePage {
             this.clave="7777";
         break;
         
-      }
     }
+  }
     
 
   
+/*Verifica que los datos estén correctos y luego verifica que el usuario esté en la BD*/
+  login(){
+    
+    if(!this.verificarError()){
 
-  /*login(){
-    localStorage.clear();
+      this.dbFirestore.verificarUsuario(this.correo,this.clave).then((data)=>{
+        console.log(data);
+        this.alertService.alertBienvenida("Bienvenido",4000).then(()=>alert("sad"));//aca hay que redireccionar a la pagina del usuario
+        //falta ver cómo se va a guardar el usuario en la app.
+      }).catch((error)=>{
+        this.alertService.alertError(error);
+      })
+    }
+
     
-    this.dbService.verificarUsuario().subscribe((data)=>{
-      data.forEach(user=>{
-        if(user.data().clave==this.clave && user.data().correo==this.correo){
-          localStorage.setItem('user',JSON.stringify(user.data()));
-          this.timerAlert();
-        }
-      });
-    
-     })
   }
 
-  timerAlert(){
-    
-     this.presentAlert("bienvenido",true);
-     setTimeout(()=>{
-       this.alertController.dismiss().then(()=>{
-        this.router.navigate(['menu']);
-       });
-     },2500);
-    
-  }*/
+  
 
 }
