@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore} from '@angular/fire/firestore';
+import { reject } from 'q';
+import { resolve } from 'url';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,6 +31,33 @@ export class CloudFirestoreService {
 
     })
   }
+
+  
+
+/*carga un dueño o supervisor a la bd, su id será el dni->(también lo tienen los clientes y empleados)*/  
+cargarDueñoOSupervisor(usuarioNuevo:any){
+
+    return new Promise((resolve,rejected)=>{
+
+      this.dbFirestore.collection("usuarios").doc(usuarioNuevo.dni.toString()).set({
+      
+      nombre:usuarioNuevo.nombre,
+      apellido:usuarioNuevo.apellido,
+      dni:usuarioNuevo.dni,
+      cuil:usuarioNuevo.cuil,
+      foto:usuarioNuevo.foto,
+      perfil:usuarioNuevo.perfil,
+
+    }).then(()=>{
+      resolve(usuarioNuevo);
+    }).catch((error)=>{
+      rejected(error);
+    });
+  })
+}
+
+
+  
 
 
 }
