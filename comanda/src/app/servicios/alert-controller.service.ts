@@ -18,6 +18,7 @@ export class AlertControllerService {
       alert = await this.alertController.create({
 
         mode:"md",
+        
         message: '<b align=center>'+mensajeDeError+'</b>',
         buttons: ['Cerrar']
         
@@ -33,8 +34,10 @@ export class AlertControllerService {
   async alertBienvenida(mensajeBienvenida:string,tiempo){
 
     var alert = await this.alertController.create({
+
+      header: 'Bienvenido!',
       mode:"md",
-      message: '<b align=center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+mensajeBienvenida+'</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-spinner name="bubbles"></ion-spinner>'
+      message: '<b align=center>'+mensajeBienvenida+'</b>&nbsp;&nbsp;<ion-spinner name="bubbles"></ion-spinner>'
         
         
     });
