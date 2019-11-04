@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-
 import { CamaraService } from 'src/app/servicios/camara.service';
 import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
 import { CloudFirestoreService } from 'src/app/servicios/cloud-firestore.service';
 import { Router } from '@angular/router';
 import { ScannerService } from 'src/app/servicios/scanner.service';
+
 @Component({
   selector: 'app-alta',
   templateUrl: './alta.page.html',
   styleUrls: ['./alta.page.scss'],
 })
 export class AltaPage implements OnInit {
+
   nombre:string="";
   apellido:string="";
   dni="";
@@ -246,8 +247,6 @@ export class AltaPage implements OnInit {
       this.alertService.alertError("No se puedo leer el codigo QR");
     });
   }
-  
-
   
 
 }

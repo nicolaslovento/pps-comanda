@@ -118,7 +118,10 @@ export class HomePage {
     switch(usuario.perfil){
       case 'dueño':
         this.router.navigateByUrl('menu-dueño');
-        break;
+      break;
+      case 'supervisor':
+        this.router.navigateByUrl('menu-supervisor');
+      break;
     }
   }
     

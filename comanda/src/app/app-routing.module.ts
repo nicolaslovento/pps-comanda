@@ -6,6 +6,9 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   { path: 'menu-dueño', loadChildren: './paginas/dueño/menu/menu.module#MenuPageModule' },
   { path: 'alta-dueño', loadChildren: './paginas/dueño/alta/alta.module#AltaPageModule' },
+  { path: 'alta-supervisor', loadChildren: './paginas/supervisor/alta/alta.module#AltaPageModule' },
+  { path: 'menu-supervisor', loadChildren: './paginas/supervisor/menu/menu.module#MenuPageModule' },
+
 
 
 ];
