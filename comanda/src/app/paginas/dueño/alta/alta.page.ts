@@ -4,6 +4,7 @@ import { CamaraService } from 'src/app/servicios/camara.service';
 import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
 import { CloudFirestoreService } from 'src/app/servicios/cloud-firestore.service';
 import { Router } from '@angular/router';
+import { ScannerService } from 'src/app/servicios/scanner.service';
 @Component({
   selector: 'app-alta',
   templateUrl: './alta.page.html',
@@ -23,7 +24,8 @@ export class AltaPage implements OnInit {
     private cameraService:CamaraService,
     private serviceFirestore:CloudFirestoreService,
     private alertService:AlertControllerService,
-    private router:Router
+    private router:Router,
+    private scannerService:ScannerService
   ){}
 
   ngOnInit() {
@@ -146,6 +148,16 @@ export class AltaPage implements OnInit {
     this.perfil="";
     this.foto="";
     this.clave="";
+  }
+
+  leerDniConQr(){
+
+    this.scannerService.iniciarScanner().then((codigoQR:any)=>{
+      alert(codigoQR);
+      this.dni=codigoQR;
+    }).catch((error)=>{
+      this.alertService.alertError("No se puedo leer el codigo QR");
+    });
   }
   
 
