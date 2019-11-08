@@ -109,6 +109,11 @@ export class HomePage {
             this.dni="7777";
             this.clave="7777";
         break;
+        case 8:
+          //empleadoMetre
+            this.dni="8888";
+            this.clave="8888";
+        break;
         
     }
   }
@@ -121,6 +126,21 @@ export class HomePage {
       break;
       case 'supervisor':
         this.router.navigateByUrl('menu-supervisor');
+      break;
+      case 'mozo':
+        this.router.navigateByUrl('menu-mozo');
+      break;
+      case 'cocinero':
+        this.router.navigateByUrl('menu-cocinero');
+      break;
+      case 'bartender':
+        this.router.navigateByUrl('menu-bartender');
+      break;
+      case 'cliente': //Este sería el cliente no registrado
+        this.router.navigateByUrl('menu-cliente'); 
+      break;
+      case 'metre':
+        this.router.navigateByUrl('menu-metre');
       break;
     }
   }

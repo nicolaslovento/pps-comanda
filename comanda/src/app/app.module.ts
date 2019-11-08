@@ -15,22 +15,13 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
 
 import { Camera } from '@ionic-native/camera/ngx';
 import { ZBar } from '@ionic-native/zbar/ngx';
-
-var firebaseConfig = {
-  apiKey: "AIzaSyCrIVYtWMfWJ_4QmwochrvVX9Aq11swuZU",
-  authDomain: "pps-comanda.firebaseapp.com",
-  databaseURL: "https://pps-comanda.firebaseio.com",
-  projectId: "pps-comanda",
-  storageBucket: "pps-comanda.appspot.com",
-  messagingSenderId: "279473463120",
-  appId: "1:279473463120:web:ccc8149b268e15e48f5655"
-};
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,AngularFireModule.initializeApp(firebaseConfig),AngularFireStorageModule,AngularFirestoreModule,],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,AngularFireModule.initializeApp(environment.firebaseConfig),AngularFireStorageModule,AngularFirestoreModule,],
   providers: [
     StatusBar,
     SplashScreen,
