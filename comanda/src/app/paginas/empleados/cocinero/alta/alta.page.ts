@@ -70,7 +70,7 @@ export class AltaPage implements OnInit {
           foto2:this.foto2,
           foto3:this.foto3,
         }
-        this.serviceFirestore.cargarDueñoOSupervisor(productoNuevo).then(()=>{
+        this.serviceFirestore.cargarProducto(productoNuevo).then(()=>{
           this.alertService.alertBienvenida("Cargando producto..",2000).then(()=>{
             this.limpiarForm();
             this.irAtras();
