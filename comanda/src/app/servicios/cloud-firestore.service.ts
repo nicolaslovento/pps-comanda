@@ -102,7 +102,7 @@ cargarClienteAnonimo(usuarioNuevo:any) {
 cargarProducto(productoNuevo:any) {
   return new Promise((resolve,rejected)=>{
 
-    this.dbFirestore.collection("productos").doc().set({
+    this.dbFirestore.collection("productos").doc(productoNuevo.nombre).set({
     
     nombre:productoNuevo.nombre,
     descripcion:productoNuevo.descripcion,
