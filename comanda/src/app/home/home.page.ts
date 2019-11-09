@@ -114,7 +114,12 @@ export class HomePage {
             this.dni="8888";
             this.clave="8888";
         break;
-        
+        case 9:
+          this.router.navigateByUrl('alta-cliente');
+        break;
+        case 10:
+            this.router.navigateByUrl('alta-clienteNoRegistrado');
+        break;   
     }
   }
 
@@ -127,19 +132,19 @@ export class HomePage {
       case 'supervisor':
         this.router.navigateByUrl('menu-supervisor');
       break;
-      case 'mozo':
+      case 'empleadoMozo':
         this.router.navigateByUrl('menu-mozo');
       break;
-      case 'cocinero':
+      case 'empleadoCocinero':
         this.router.navigateByUrl('menu-cocinero');
       break;
-      case 'bartender':
+      case 'empleadoBartender':
         this.router.navigateByUrl('menu-bartender');
       break;
       case 'cliente': //Este sería el cliente no registrado
         this.router.navigateByUrl('menu-cliente'); 
       break;
-      case 'metre':
+      case 'empleadoMetre':
         this.router.navigateByUrl('menu-metre');
       break;
     }

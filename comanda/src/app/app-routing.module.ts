@@ -16,6 +16,12 @@ const routes: Routes = [
   { path: 'menu-bartender', loadChildren: './paginas/empleados/bartender/menu/menu.module#MenuPageModule' },
   { path: 'menu-cliente', loadChildren: './paginas/cliente/menu/menu.module#MenuPageModule' },
   { path: 'alta-cliente', loadChildren: './paginas/cliente/alta/alta.module#AltaPageModule' },
+  { path: 'alta-mozo', loadChildren: './paginas/empleados/mozo/alta/alta.module#AltaPageModule' },
+  { path: 'menu-mozo', loadChildren: './paginas/empleados/mozo/menu/menu.module#MenuPageModule' },
+  { path: 'alta-clienteNoRegistrado', loadChildren: './paginas/clienteNoRegistrado/alta/alta.module#AltaPageModule' },
+  { path: 'menu-clienteNoRegistrado', loadChildren: './paginas/clienteNoRegistrado/menu/menu.module#MenuPageModule' },
+
+
 
 ];
 

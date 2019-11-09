@@ -47,6 +47,7 @@ cargarDueñoOSupervisor(usuarioNuevo:any){
       cuil:usuarioNuevo.cuil,
       foto:usuarioNuevo.foto,
       perfil:usuarioNuevo.perfil,
+      clave:usuarioNuevo.clave,
 
     }).then(()=>{
       resolve(usuarioNuevo);
@@ -56,6 +57,69 @@ cargarDueñoOSupervisor(usuarioNuevo:any){
   })
 }
 
+//Cargar cliente a la bd
+cargarCliente(usuarioNuevo:any) {
+  return new Promise((resolve,rejected)=>{
+
+    this.dbFirestore.collection("usuarios").doc(usuarioNuevo.dni.toString()).set({
+    
+    nombre:usuarioNuevo.nombre,
+    apellido:usuarioNuevo.apellido,
+    dni:usuarioNuevo.dni,
+    foto:usuarioNuevo.foto,
+    clave:usuarioNuevo.clave,
+    perfil:"cliente",
+
+  }).then(()=>{
+    resolve(usuarioNuevo);
+  }).catch((error)=>{
+    rejected(error);
+  });
+})
+}
+
+//Cargar cliente anonimo a la bd
+cargarClienteAnonimo(usuarioNuevo:any) {
+  return new Promise((resolve,rejected)=>{
+
+    this.dbFirestore.collection("usuarios").doc(usuarioNuevo.dni.toString()).set({
+    
+    nombre:usuarioNuevo.nombre,
+    dni:usuarioNuevo.dni,
+    foto:usuarioNuevo.foto,
+    clave:usuarioNuevo.clave,
+    perfil:"clienteAnonimo",
+
+  }).then(()=>{
+    resolve(usuarioNuevo);
+  }).catch((error)=>{
+    rejected(error);
+  });
+})
+}
+
+//Carga un producto a la Base de Datos 
+cargarProducto(productoNuevo:any) {
+  return new Promise((resolve,rejected)=>{
+
+    this.dbFirestore.collection("productos").doc().set({
+    
+    nombre:productoNuevo.nombre,
+    descripcion:productoNuevo.descripcion,
+    tiempoElab:productoNuevo.tiempoElab,
+    precio:productoNuevo.precio,
+    foto1:productoNuevo.foto1,
+    foto2:productoNuevo.foto1,
+    foto3:productoNuevo.foto1,
+
+    
+  }).then(()=>{
+    resolve(productoNuevo);
+  }).catch((error)=>{
+    rejected(error);
+  });
+})
+}
 
   
 

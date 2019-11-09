@@ -18,7 +18,7 @@ export class MenuPage implements OnInit {
     switch(eleccion){
 
       case 1:
-        this.router.navigateByUrl('alta-dueño');
+        this.router.navigateByUrl('alta-cocinero');
         break;
 
       case 2:

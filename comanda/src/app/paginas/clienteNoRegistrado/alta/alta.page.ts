@@ -4,6 +4,7 @@ import { CamaraService } from 'src/app/servicios/camara.service';
 import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
 import { CloudFirestoreService } from 'src/app/servicios/cloud-firestore.service';
 import { Router } from '@angular/router';
+import { ScannerService } from 'src/app/servicios/scanner.service';
 
 @Component({
   selector: 'app-alta',
@@ -13,64 +14,46 @@ import { Router } from '@angular/router';
 export class AltaPage implements OnInit {
 
   nombre:string="";
-  descripcion:string="";
-  tiempoElab="";
-  precio="";
-  foto1:any=""; 
-  foto2:any=""; 
-  foto3:any=""; 
+  apellido:string="";
+  dni="";
+  foto:any="";
+  clave:string="";
   error:string="";
-
 
   constructor(
     private cameraService:CamaraService,
     private serviceFirestore:CloudFirestoreService,
     private alertService:AlertControllerService,
     private router:Router,
-  ) { }
+    private scannerService:ScannerService
+  ){}
 
   ngOnInit() {
+ 
   }
 
-  tomarFoto1(){
-    let nombreFoto=this.nombre;
-    this.cameraService.tomarFoto(nombreFoto).then(fotoSacada=>{
-      this.foto1=fotoSacada;
-    });
-    
-  }
 
-  tomarFoto2(){
-    let nombreFoto=this.nombre;
+  tomarFoto(){
+    let  usuarioActual=JSON.parse(localStorage.getItem('usuario'));
+    let nombreFoto=usuarioActual.dni+"-"+(new Date()).getTime();
     this.cameraService.tomarFoto(nombreFoto).then(fotoSacada=>{
-      this.foto2=fotoSacada;
-    });
-    
-  }
-
-  tomarFoto3(){
-    let nombreFoto=this.nombre;
-    this.cameraService.tomarFoto(nombreFoto).then(fotoSacada=>{
-      this.foto3=fotoSacada;
+      this.foto=fotoSacada;
     });
     
   }
 
   darDeAlta(){
 
-      if(!this.verificarErrorAltaProducto()){
+      if(!this.verificarCliente()){
 
-        let productoNuevo={
+        let usuarioNuevo={
           nombre:this.nombre,
-          descripcion:this.descripcion,
-          tiempoElab:this.tiempoElab.toString(),
-          precio:this.precio.toString(),
-          foto1:this.foto1,
-          foto2:this.foto2,
-          foto3:this.foto3,
+          dni:this.dni.toString(),
+          foto:this.foto,
+          clave:this.clave
         }
-        this.serviceFirestore.cargarDueñoOSupervisor(productoNuevo).then(()=>{
-          this.alertService.alertBienvenida("Cargando producto..",2000).then(()=>{
+        this.serviceFirestore.cargarClienteAnonimo(usuarioNuevo).then(()=>{
+          this.alertService.alertBienvenida("Cargando usuario..",2000).then(()=>{
             this.limpiarForm();
             this.irAtras();
           });
@@ -82,44 +65,36 @@ export class AltaPage implements OnInit {
     
   }
 
-  verificarErrorAltaProducto(){
+
+  verificarCliente(){
 
     let errores=0;
     if(this.nombre==""){
       this.error="El nombre no puede estar vacío.";
       errores++;
     }
-    if(this.descripcion==""){
 
-      this.error="La descripción no puede estar vacía.";
-      errores++;
-    }
+    if(this.dni.length<6){
 
-    if(this.tiempoElab.length<1){
-
-      this.error="El tiempo de elaboración no puede ser menor a 1 minuto.";
+      this.error="El dni debe tener al menos 6 dígitos.";
       errores++;
      
     }
 
-    if(this.foto1==""){
+    if(this.foto==""){
 
-      this.foto1="";
+      this.error="Debe tomarse una foto.";
+      errores++;
       
     }
 
-    if(this.foto2==""){
+    
+    if(this.clave.length<0){
 
-      this.foto2="";
+      this.error="La clave debe tener al menos 4 dígitos.";
+      errores++;
       
     }
-
-    if(this.foto3==""){
-
-      this.foto3="";
-      
-    }
-  
 
     if(errores==1){
       this.alertService.alertError(this.error);
@@ -132,7 +107,6 @@ export class AltaPage implements OnInit {
 
   }
 
-
   cerrarSesion(){
     localStorage.clear();
     this.router.navigateByUrl('home');
@@ -140,17 +114,24 @@ export class AltaPage implements OnInit {
 
   irAtras(){
     this.limpiarForm();
-    this.router.navigateByUrl('menu-bartender');
+    this.router.navigateByUrl('home');
   }
 
   limpiarForm(){
     this.nombre="";
-    this.descripcion="";
-    this.tiempoElab="";
-    this.precio="";
-    this.foto1="";
-    this.foto2="";
-    this.foto3="";
+    this.dni="";
+    this.foto="";
+    this.clave="";
+  }
+
+  leerDniConQr(){
+
+    this.scannerService.iniciarScanner().then((codigoQR:any)=>{
+      alert(codigoQR);
+      this.dni=codigoQR;
+    }).catch((error)=>{
+      this.alertService.alertError("No se puedo leer el codigo QR");
+    });
   }
 
 }
