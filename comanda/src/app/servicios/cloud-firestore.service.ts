@@ -121,7 +121,25 @@ cargarProducto(productoNuevo:any) {
 })
 }
 
-  
+//Carga una mesa a la bd, su id será el numero 
+cargarMesa(mesaNueva:any){
+
+  return new Promise((resolve,rejected)=>{
+
+    this.dbFirestore.collection("mesas").doc(mesaNueva.numero.toString()).set({
+    
+    numero:mesaNueva.numero,
+    comensales:mesaNueva.comensales,
+    foto:mesaNueva.foto,
+    codigo:mesaNueva.codigo,
+
+  }).then(()=>{
+    resolve(mesaNueva); 
+  }).catch((error)=>{
+    rejected(error);
+  });
+})
+}  
 
 
 }
