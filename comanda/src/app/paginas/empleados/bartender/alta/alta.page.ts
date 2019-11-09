@@ -34,7 +34,7 @@ export class AltaPage implements OnInit {
 
   tomarFoto1(){
     let nombreFoto=this.nombre;
-    this.cameraService.tomarFoto(nombreFoto).then(fotoSacada=>{
+    this.cameraService.tomarFoto(nombreFoto+"1").then(fotoSacada=>{
       this.foto1=fotoSacada;
     });
     
@@ -42,7 +42,7 @@ export class AltaPage implements OnInit {
 
   tomarFoto2(){
     let nombreFoto=this.nombre;
-    this.cameraService.tomarFoto(nombreFoto).then(fotoSacada=>{
+    this.cameraService.tomarFoto(nombreFoto+"2").then(fotoSacada=>{
       this.foto2=fotoSacada;
     });
     
@@ -50,7 +50,7 @@ export class AltaPage implements OnInit {
 
   tomarFoto3(){
     let nombreFoto=this.nombre;
-    this.cameraService.tomarFoto(nombreFoto).then(fotoSacada=>{
+    this.cameraService.tomarFoto(nombreFoto+"3").then(fotoSacada=>{
       this.foto3=fotoSacada;
     });
     
@@ -69,7 +69,7 @@ export class AltaPage implements OnInit {
           foto2:this.foto2,
           foto3:this.foto3,
         }
-        this.serviceFirestore.cargarDueñoOSupervisor(productoNuevo).then(()=>{
+        this.serviceFirestore.cargarProducto(productoNuevo).then(()=>{
           this.alertService.alertBienvenida("Cargando producto..",2000).then(()=>{
             this.limpiarForm();
             this.irAtras();
