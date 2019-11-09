@@ -16,7 +16,10 @@ Tareas:
 - Alta de dueño/supervisor
 - Alta de empleados
 
+Rey, Facundo. (Branch: Facundo)
 
+Tareas: 
+- Alta de mesa
 
 Objetivos:
 09/11: Icono, splash, login y todas las altas terminadas.
