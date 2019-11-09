@@ -243,7 +243,7 @@ export class AltaPage implements OnInit {
       alert(codigoQR);
       this.dni=codigoQR;
     }).catch((error)=>{
-      this.alertService.alertError("No se puedo leer el codigo QR");
+      this.alertService.alertError("No se pudo leer el codigo QR");
     });
   }
   
