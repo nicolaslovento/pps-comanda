@@ -13,10 +13,10 @@
 .login{
       position: absolute;
       width: 250px;
-      height: 280px;
+      height: 260px;
       background-color: rgba($color: slategrey, $alpha: 0.5);
-      top:15%;
-      margin-left: 20%;
+      top:5%;
+      margin-left: 14%;
       margin-right: 20%;
   }
   
@@ -25,20 +25,21 @@
       --background:transparent;
       width:227px;
       font-size: 13px;
-      margin-top:10%;
+      margin-top:8%;
       color:white;
   }
 
   .buttonIngresar ion-button{
     position: absolute;
-    margin-top: 13%;
-    margin-left: 14px;
+    top:70%;
+    left: 9%;
     width: 200px;
+    height: 50px;
   }
 
   .btn-usuarios{
       position: absolute;
-      top:60%;
+      bottom:2%;
       float:right;
   }
   

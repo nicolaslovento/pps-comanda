@@ -4,17 +4,17 @@
   <div  class="login" padding>
 
     <ion-item class="input">
-      <ion-label  position="floating" align="center" color-text="black">DNI</ion-label>
+      <ion-label  position="floating"  color-text="black">DNI</ion-label>
       <ion-input  clear-input="true" type="number" name="dni" [(ngModel)]="dni"></ion-input>
     </ion-item>
 
     <ion-item class="input">
-      <ion-label position="floating" align="center">CLAVE</ion-label>
+      <ion-label position="floating" >CLAVE</ion-label>
       <ion-input clear-input="true" type="password" name="clave" [(ngModel)]="clave" ></ion-input>
     </ion-item>
 
     <div class="buttonIngresar">
-      <ion-button shape="round"  expand="block" (click)="login()" color="primary">Ingresar</ion-button>
+      <ion-button shape="round"   (click)="login()" color="primary">Ingresar</ion-button>
     </div>
 
   </div>

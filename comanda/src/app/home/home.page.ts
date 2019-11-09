@@ -17,6 +17,7 @@ export class HomePage {
 
   ngOnInit() {
     
+    localStorage.clear();
     
   }
 
@@ -159,7 +160,7 @@ export class HomePage {
 
       this.dbFirestore.verificarUsuario(this.dni,this.clave).then((usuario)=>{
         console.log(usuario);
-        this.alertService.alertBienvenida("Bienvenido",3000).then(()=>{
+        this.alertService.alertBienvenida("Espere..",3000).then(()=>{
           localStorage.setItem('usuario',JSON.stringify(usuario));//guarda usuario en ls
           this.redireccionar(usuario);//aca hay que redireccionar a la pagina del usuario
         });
