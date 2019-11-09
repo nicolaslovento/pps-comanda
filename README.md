@@ -1,8 +1,11 @@
-# pps-comanda
+Trabajo práctico de Práctica Profesional "La comanda"
 
 Famiglietti, Franco Agustín. (Branch: Franco)
 
-Tareas:
+Tareas: 
+
+- Alta de clientes
+- Alta de productos
 
 
 Lo Vento, Nicolás. (Branch: Nicolas)
