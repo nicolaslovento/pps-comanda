@@ -11,6 +11,7 @@ Tareas:
 Lo Vento, Nicolás. (Branch: Nicolas)
 
 Tareas: 
+- Diseño de la app
 - Icono y splash
 - Login
 - Alta de dueño/supervisor
