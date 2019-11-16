@@ -27,7 +27,7 @@ export class ScannerService {
 
   iniciarScanner(){
     return new Promise((resolve,reject)=>{
-      this.barcodeScanner.scan().then((result)=>{
+      this.barcodeScanner.scan({prompt: "Enfoque el código de barras del DNI", formats: "PDF_417"}).then((result)=>{
        resolve(result);
     }).catch((error)=>{
       reject(error);

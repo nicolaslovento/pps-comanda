@@ -135,13 +135,14 @@ export class AltaPage implements OnInit {
     
     this.scannerService.iniciarScanner().then((barcodeData:any)=>{
       alert("Escaneado: "+barcodeData.format);
-      try{var datos = barcodeData.text.split("@")
+      var datos = barcodeData.text.split("@")
+      if(datos[4] == null){
+        this.alertService.alertError("El código no es de DNI");
+        return;
+      }
       this.nombre=datos[2];
       this.apellido=datos[1];
-      this.dni=datos[4];}
-      catch{
-        this.alertService.alertError("El código no es de DNI");
-      }
+      this.dni=datos[4];
     }).catch((error)=>{
       this.alertService.alertError("No se pudo leer el codigo QR");
     });
