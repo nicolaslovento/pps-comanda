@@ -15,6 +15,7 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
 
 import { Camera } from '@ionic-native/camera/ngx';
 import { ZBar } from '@ionic-native/zbar/ngx';
+import { BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
 import { environment } from 'src/environments/environment';
 
 
@@ -26,6 +27,7 @@ import { environment } from 'src/environments/environment';
     StatusBar,
     SplashScreen,
     Camera,
+    BarcodeScanner,
     ZBar,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

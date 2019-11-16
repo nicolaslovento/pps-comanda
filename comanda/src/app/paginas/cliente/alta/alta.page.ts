@@ -132,12 +132,18 @@ export class AltaPage implements OnInit {
   }
 
   leerDniConQr(){
-
-    this.scannerService.iniciarScanner().then((codigoQR:any)=>{
-      alert(codigoQR);
-      this.dni=codigoQR;
+    
+    this.scannerService.iniciarScanner().then((barcodeData:any)=>{
+      alert("Escaneado: "+barcodeData.format);
+      try{var datos = barcodeData.text.split("@")
+      this.nombre=datos[2];
+      this.apellido=datos[1];
+      this.dni=datos[4];}
+      catch{
+        this.alertService.alertError("El código no es de DNI");
+      }
     }).catch((error)=>{
-      this.alertService.alertError("No se puedo leer el codigo QR");
+      this.alertService.alertError("No se pudo leer el codigo QR");
     });
   }
 

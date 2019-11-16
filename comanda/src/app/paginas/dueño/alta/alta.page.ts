@@ -20,6 +20,9 @@ export class AltaPage implements OnInit {
   clave:string="";
   error:string="";
   opcion:string='dueño/supervisor';
+  numeroMesa=0;
+  comensales=0;
+  numeroPedido=0;
 
   constructor(
     private cameraService:CamaraService,
@@ -69,7 +72,7 @@ export class AltaPage implements OnInit {
           console.log(error);
         });
       }
-    }else{
+    }else if(this.opcion=="empleado"){
       //si es empleado,no verifica la foto
       if(!this.verificarErrorEmpleado()){
 
@@ -94,7 +97,27 @@ export class AltaPage implements OnInit {
         });
       }
     }
-    
+    else{
+      if(!this.verificarErrorMesa()){
+
+        let mesaNueva={
+          numeroMesa:this.numeroMesa,
+          comensales:this.comensales,
+          foto:this.foto,
+          codigo:this.numeroMesa+"ABC",
+          numeroPedido:this.numeroPedido,
+        }
+        this.serviceFirestore.cargarMesa(mesaNueva).then(()=>{
+          this.alertService.alertBienvenida("Cargando mesa..",2000).then(()=>{
+            this.limpiarForm();
+            this.irAtras();
+          });
+        }).catch((error)=>{
+          this.alertService.alertError(error);
+          console.log(error);
+        });
+      }
+    }
   }
 
   verificarErrorEmpleado(){
@@ -202,6 +225,37 @@ export class AltaPage implements OnInit {
     if(this.clave.length<0){
 
       this.error="La clave debe tener al menos 4 dígitos.";
+      errores++;
+      
+    }
+
+    if(errores==1){
+      this.alertService.alertError(this.error);
+      return true;
+    }
+    if(errores>1){
+      this.alertService.alertError("No puede haber campos vacíos.");
+      return true
+    }
+
+  }
+
+  verificarErrorMesa(){
+
+    let errores=0;
+    if(this.numeroMesa<0){
+      this.error="El número de mesa no puede estar vacío.";
+      errores++;
+    }
+    if(this.comensales<0){
+
+      this.error="Debe haber al menos 1 comensal.";
+      errores++;
+    }
+
+    if(this.foto==""){
+
+      this.error="Debe tomarse una foto.";
       errores++;
       
     }

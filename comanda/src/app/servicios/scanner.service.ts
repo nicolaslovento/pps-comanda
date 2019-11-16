@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ZBar, ZBarOptions } from '@ionic-native/zbar/ngx';
+/*import { ZBar, ZBarOptions } from '@ionic-native/zbar/ngx';*/
+import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScannerService {
 
-  constructor(private scanQr:ZBar) { }
+  scannedData: {};
+  constructor(private barcodeScanner:BarcodeScanner) { }
 
-  iniciarScanner(){
+  /*iniciarScanner(){
     var options: ZBarOptions = {
       flash: 'off',
       drawSight: false
@@ -21,7 +23,17 @@ export class ScannerService {
     })
   })
 
-  }
+  }*/
 
+  iniciarScanner(){
+    return new Promise((resolve,reject)=>{
+      this.barcodeScanner.scan().then((result)=>{
+       resolve(result);
+    }).catch((error)=>{
+      reject(error);
+    })
+  })
+
+  }
 
 }
