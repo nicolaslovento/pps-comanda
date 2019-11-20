@@ -4,7 +4,7 @@ import { CamaraService } from 'src/app/servicios/camara.service';
 import { AlertControllerService } from 'src/app/servicios/alert-controller.service';
 import { CloudFirestoreService } from 'src/app/servicios/cloud-firestore.service';
 import { Router } from '@angular/router';
-import { ScannerService } from 'src/app/servicios/scanner.service';
+import { ScannerService } from 'src/app/servicios/scanner-dni.service';
 
 @Component({
   selector: 'app-alta',
